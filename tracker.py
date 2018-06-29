@@ -31,7 +31,7 @@ if __name__ == '__main__' :
 
     # Read video
     video = cv2.VideoCapture("videos/chaplin.mp4")
-
+    writer = cv2.VideoWriter("video.avi",cv2.VideoWriter_fourcc('M','J','P','G'),25.0,(500,500))
     # Exit if video not opened.
     if not video.isOpened():
         print("Could not open video")
@@ -98,7 +98,13 @@ if __name__ == '__main__' :
         cv2.imshow("Canvas", canvas)
         cv2.imshow("imTrimmed",imTrimmed)
         # Exit if ESC pressed
+        
+        #Write Canvas as a Video
+        if writer.isOpened():
+            writer.write(canvas)
+        
         k = cv2.waitKey(1) & 0xff
         if k == 27 : break
     #cv2.rectangle(canvas,(200,50),(225,125),(255,0,0),-1)
     #cv2.imshow("Canvas", canvas)
+
